@@ -1,0 +1,11 @@
+image: java:jdk
+
+basic:
+  script:
+    - cd cwk1/test
+    - bash basictests
+
+full:
+  script:
+    - cd cwk1/test
+    - bash fulltests
