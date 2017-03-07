@@ -1,6 +1,5 @@
 import java.util.InputMismatchException;
 
-
 /**
  * Represents the records of a Met Office weather station.
  *
@@ -110,6 +109,10 @@ public class WeatherRecord
         {
         monthName = ("December");
         }
+    else
+        {
+        monthName = ("No valid month found");
+        }
     return monthName;
     }
 
@@ -158,7 +161,7 @@ public class WeatherRecord
   String line [] = input.trim().split("\\s+");
 
     if (line.length != 7) {
-      throw new InputMismatchException("invalid record format");
+      throw new InputMismatchException("Invalid record format");
 }
       year = Integer.parseInt(line[0]);
       month = Integer.parseInt(line[1]);
@@ -167,15 +170,10 @@ public class WeatherRecord
       frostDays = Integer.parseInt(line[4]);
       rainfall = Double.parseDouble(line[5]);
       sunHours = Double.parseDouble(line[6]);
-
-
-
-
-    
   }
   public static void main(String[] args)
     {
-    WeatherRecord r = new WeatherRecord    ("1930   1    7.6     1.3      11   137.9    36.3");
+    WeatherRecord r = new WeatherRecord    ("1930   13    7.6     1.3      11   137.9    36.3");
     System.out.println(r.getMonthName());
     }
 }

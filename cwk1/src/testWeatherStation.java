@@ -15,13 +15,14 @@ public class WeatherStation
   private WeatherRecord weatherRecord;
 
 
-public static void main (String[] args) throws FileNotFoundException
+public WeatherStation (String[] args) throws FileNotFoundException
 {
+
   Scanner input = new Scanner(new File(args[0]));
 
-  input.nextLine();
+  name=input.nextLine();
 
-  input.nextLine();
+  location = new Location(input.nextLine());
 
   input.nextLine();
 
@@ -30,40 +31,9 @@ public static void main (String[] args) throws FileNotFoundException
   while (input.hasNextLine()) 
   {
     String line = input.nextLine();
-    count++;
     System.out.println(line);
   }
 
   input.close();
 }
-}
-
-public String getName
-{
-  return name;
-}
-
-public String getLocation
-{
-  return Location;
-}
-
-public int getRecordCount
-{
-  return recordCount;
-}
-
-public int getRecord
-{
-  return record;
-}
-
-public String findSunniestMonth
-{
-  return sunniestMonth;
-}
-
-public double meanMaxTemp
-{
-  return maxTemp;
 }
