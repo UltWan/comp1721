@@ -109,9 +109,9 @@ public class WeatherRecord
         {
         monthName = ("December");
         }
-    else
+    if (month > 12)
         {
-        monthName = ("No valid month found");
+        monthName = ("Integer does not correspond to a month");
         }
     return monthName;
     }
@@ -173,7 +173,7 @@ public class WeatherRecord
   }
   public static void main(String[] args)
     {
-    WeatherRecord r = new WeatherRecord    ("1930   13    7.6     1.3      11   137.9    36.3");
+    WeatherRecord r = new WeatherRecord    ("1930   1    7.6     1.3      11   137.9    36.3");
     System.out.println(r.getMonthName());
     }
 }

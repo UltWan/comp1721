@@ -1,6 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 /**
  * Represents a Met Office weather station.
@@ -13,57 +12,64 @@ public class WeatherStation
   private String name;
   private Location location;
   private WeatherRecord weatherRecord;
+  private List<WeatherRecord> wr = new LinkedList<>();
+  private int recordCount;
+  private String sunniestMonth;
+  private double maxTemp;
+  int count = -4;
 
-
-public static void main (String[] args) throws FileNotFoundException
-{
-  Scanner input = new Scanner(new File(args[0]));
-
-  input.nextLine();
-
-  input.nextLine();
-
-  input.nextLine();
-
-  input.nextLine();
-
-  while (input.hasNextLine()) 
+  WeatherStation (String filename) throws FileNotFoundException
   {
-    String line = input.nextLine();
-    count++;
-    System.out.println(line);
+    Scanner input = new Scanner(new File(filename));
+
+    name = input.nextLine();
+
+    location = new Location(input.nextLine());
+
+    input.nextLine();
+
+    input.nextLine();
+
+    while (input.hasNextLine())
+    {
+      wr.add(new WeatherRecord(input.nextLine()));
+      //String line = input.nextLine();
+      count++;
+      //System.out.println(line);
+
+    }
+
+    input.close();
   }
 
-  input.close();
-}
-}
 
-public String getName
-{
-  return name;
-}
+  public String getName()
+  {
+    return name;
+  }
 
-public String getLocation
-{
-  return Location;
-}
+  public Location getLocation()
+  {
+    return location;
+  }
 
-public int getRecordCount
-{
-  return recordCount;
-}
+  public int getRecordCount()
+  {
+    return count;
+  }
 
-public int getRecord
-{
-  return record;
-}
+  public WeatherRecord getRecord(int index)
+  {
+    return wr.get(index);
+  }
 
-public String findSunniestMonth
-{
-  return sunniestMonth;
-}
+  public String findSunniestMonth()
+  {
+    return sunniestMonth;
+  }
 
-public double meanMaxTemp
-{
-  return maxTemp;
+  public double meanMaxTemp()
+  {
+    return maxTemp;
+  }
 }

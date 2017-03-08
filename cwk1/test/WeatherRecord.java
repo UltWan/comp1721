@@ -1,6 +1,4 @@
 import java.util.InputMismatchException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Represents the records of a Met Office weather station.
@@ -9,12 +7,9 @@ import java.util.regex.Pattern;
  */
 public class WeatherRecord
 {
-  private static final Pattern PATTERN = Pattern.compile(
-      "^^\\yyyy\\mm\\tmax\\tmin\\af\\rain\\sun"
-  );
-
   private int year;
   private int month;
+  private String monthName;
   private double maxTemp;
   private double minTemp;
   private int frostDays;
@@ -33,21 +28,6 @@ public class WeatherRecord
    * @param line Line of text containing location data
    */
 
-  public WeatherRecord(String line) {
-    Matcher matcher = PATTERN.matcher(line);
-    if (matcher.matches()) {
-      year = Integer.parseInt(matcher.group(1));
-      month = Integer.parseInt(matcher.group(2));
-      maxTemp = Double.parseDouble(matcher.group(3));
-      minTemp = Double.parseDouble(matcher.group(4));
-      frostDays = Integer.parseInt(matcher.group(5));
-      rainfall = Double.parseDouble(matcher.group(6));
-      sunHours = Double.parseDouble(matcher.group(7));
-    }
-    else {
-      throw new InputMismatchException("invalid record format");
-    }
-  }
 
   /**
    * @return Year of the WeatherRecord
@@ -60,9 +40,80 @@ public class WeatherRecord
   /**
    * @return Month of the WeatherRecord
    */
-  public int getMonthName()
+  public int getMonth()
     {
     return month;
+    }
+
+  /**
+   * @return Month of the WeatherRecord
+   */
+  public String getMonthName()
+    {
+    if (month == 1)
+        {
+        monthName = ("January");
+        }
+
+    if (month == 2)
+        {
+        monthName = ("February");
+        }
+
+    if (month == 3)
+        {
+        monthName = ("March");
+        }
+
+    if (month == 4)
+        {
+        monthName = ("April");
+        }
+
+    if (month == 5)
+        {
+        monthName = ("May");
+        }
+
+    if (month == 6)
+        {
+        monthName = ("June");
+        }
+
+    if (month == 7)
+        {
+        monthName = ("July");
+        }
+
+    if (month == 8)
+        {
+        monthName = ("August");
+        }
+
+    if (month == 9)
+        {
+        monthName = ("September");
+        }
+
+    if (month == 10)
+        {
+        monthName = ("October");
+        }
+
+    if (month == 11)
+        {
+        monthName = ("November");
+        }
+
+    if (month == 12)
+        {
+        monthName = ("December");
+        }
+    if (month > 12)
+        {
+        monthName = ("Integer does not correspond to a month");
+        }
+    return monthName;
     }
 
   /**
@@ -103,5 +154,26 @@ public class WeatherRecord
   public double getSunHours()
     {
     return sunHours;
+    }
+
+  public WeatherRecord(String input) {
+
+  String line [] = input.trim().split("\\s+");
+
+    if (line.length != 7) {
+      throw new InputMismatchException("Invalid record format");
+}
+      year = Integer.parseInt(line[0]);
+      month = Integer.parseInt(line[1]);
+      maxTemp = Double.parseDouble(line[2]);
+      minTemp = Double.parseDouble(line[3]);
+      frostDays = Integer.parseInt(line[4]);
+      rainfall = Double.parseDouble(line[5]);
+      sunHours = Double.parseDouble(line[6]);
+  }
+  public static void main(String[] args)
+    {
+    WeatherRecord r = new WeatherRecord    ("1930   1    7.6     1.3      11   137.9    36.3");
+    System.out.println(r.getMonthName());
     }
 }
