@@ -1,4 +1,5 @@
-import java.util.InputMismatchException;
+import java.util.*;
+import java.io.*;
 
 /**
  * Represents the records of a Met Office weather station.
@@ -17,39 +18,26 @@ public class WeatherRecord
   private double sunHours;
 
   /**
-   * Creates a Location object from the data supplied in a Met Office
-   * weather station dataset.
-   *
-   * <p>An example of the required format is shown here:</p>
-   * <pre>
-   * Location 433900E 387200N, Lat 53.381 Lon -1.490, 131 metres amsl
-   * </pre>
-   *
-   * @param line Line of text containing location data
-   */
-
-
-  /**
-   * @return Year of the WeatherRecord
+   * @return Year of a weather record
    */
   public int getYear()
-    {
+  {
     return year;
-    }
+  }
 
   /**
-   * @return Month of the WeatherRecord
+   * @return Month of a weather record
    */
   public int getMonth()
-    {
+  {
     return month;
-    }
+  }
 
   /**
-   * @return Month of the WeatherRecord
+   * @return Month name of a weather record
    */
   public String getMonthName()
-    {
+  {
     if (month == 1)
         {
         monthName = ("January");
@@ -114,66 +102,74 @@ public class WeatherRecord
         monthName = ("Integer does not correspond to a month");
         }
     return monthName;
-    }
+  }
 
   /**
-   * @return MaxTemp of the WeatherRecord in deg C
+   * @return MaxTemp of a weather record in deg C
    */
   public double getMaxTemp()
-    {
+  {
     return maxTemp;
-    }
+  }
 
   /**
-   * @return MinTemp of the WeatherRecord in deg C
+   * @return MinTemp of a weather record in deg C
    */
   public double getMinTemp()
-    {
+  {
     return minTemp;
-    }
+  }
 
   /**
-   * @return FrostDays of the WeatherRecord in days
+   * @return FrostDays of a weather record in days
    */
   public int getFrostDays()
-    {
+  {
     return frostDays;
-    }
+  }
 
   /**
-   * @return Rainfall of the WeatherRecord in mm
+   * @return Rainfall of the weather record in mm
    */
   public double getRainfall()
-    {
+  {
     return rainfall;
-    }
+  }
 
   /**
    * @return SunHours of the WeatherRecord in hours
    */
   public double getSunHours()
-    {
+  {
     return sunHours;
-    }
-
-  public WeatherRecord(String input) {
-
-  String line [] = input.trim().split("\\s+");
-
-    if (line.length != 7) {
-      throw new InputMismatchException("Invalid record format");
-}
-      year = Integer.parseInt(line[0]);
-      month = Integer.parseInt(line[1]);
-      maxTemp = Double.parseDouble(line[2]);
-      minTemp = Double.parseDouble(line[3]);
-      frostDays = Integer.parseInt(line[4]);
-      rainfall = Double.parseDouble(line[5]);
-      sunHours = Double.parseDouble(line[6]);
   }
-  public static void main(String[] args)
+
+  /**
+   * Checks to make sure that the data being read in is in 
+   * the correct order and format.
+   *
+   * <p>An example of the required format is shown here:</p>
+   * <pre>
+   *    1930   1    8.1     2.4       6   120.5    54.2
+   * </pre>
+   *
+   * @param line Line of text containing location data
+   */
+  public WeatherRecord(String input)
+  {
+    String line [] = input.trim().split("\\s+");
+
+    if (line.length != 7) 
     {
-    WeatherRecord r = new WeatherRecord    ("1930   1    7.6     1.3      11   137.9    36.3");
-    System.out.println(r.getMonthName());
+      throw new InputMismatchException("Invalid record format");
     }
+
+    year = Integer.parseInt(line[0]);
+    month = Integer.parseInt(line[1]);
+    maxTemp = Double.parseDouble(line[2]);
+    minTemp = Double.parseDouble(line[3]);
+    frostDays = Integer.parseInt(line[4]);
+    rainfall = Double.parseDouble(line[5]);
+    sunHours = Double.parseDouble(line[6]);
+  }
 }
