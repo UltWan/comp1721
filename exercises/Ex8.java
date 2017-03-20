@@ -1,21 +1,20 @@
-public class Ex7
+import java.util.Scanner;
+
+public class Ex8
 {
   public static void main(String[] args)
   {
-    BankAccount bankaccount1 = new BankAccount(4, 40);
-    System.out.println("Rectangle 1:");
-    System.out.println("The width of the rectangle is: " + rectangle1.getWidth());
-    System.out.println("The height of the rectangle is: " + rectangle1.getHeight());
-    System.out.println("The area of the rectangle is: " + rectangle1.getArea());
-    System.out.println("The perimeter of the rectangle is: " + rectangle1.getPerimeter());
-    System.out.println("");
+    Scanner input = new Scanner(System.in);
+    System.out.println("Enter ID: ");
+    int id = input.nextInt();
+    System.out.println("Enter name: ");
+    String name = input.next();
 
-    BankAccount bankaccount2 = new BankAccount(3.5, 35.9);
-    System.out.println("Rectangle 2:");
-    System.out.println("The width of the rectangle is: " + rectangle2.getWidth());
-    System.out.println("The height of the rectangle is: " + rectangle2.getHeight());
-    System.out.println("The area of the rectangle is: " + rectangle2.getArea());
-    System.out.println("The perimeter of the rectangle is: " + rectangle2.getPerimeter());
+    BankAccount bankAccount1 = new BankAccount(id, name, 20000);
+    bankAccount1.withdraw(2500);
+    bankAccount1.deposit(3000);
+
+    System.out.println("The current balance of the account is: " + bankAccount1.getBalance());
   }
 }
 
@@ -37,28 +36,44 @@ public class Ex7
       balance = b;
     }
 
-    int getId()
+    int getID()
     {
       return id;
     }
 
     String getName()
     {
-      return String;
+      return name;
     }
 
     int getBalance()
     {
-      return width * height;
+      return balance;
     }
 
     boolean deposit(int amount)
     {
-      return;
+      if (amount > 0)
+      {
+        balance = balance + amount;
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
 
     boolean withdraw(int amount)
     {
-      return;
+      if (amount > 0 && amount <= balance)
+    {
+      balance = balance - amount;
+      return true;
+    }
+    else
+    {
+      return false;
+    }
     }
 }

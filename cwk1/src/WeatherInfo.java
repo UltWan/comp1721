@@ -30,7 +30,7 @@ public class WeatherInfo
       System.out.println("Location: " + ws.getLocation());
       System.out.println(ws.getRecordCount() + " months of data available");
       WeatherRecord wr = ws.findSunniestMonth();
-      System.out.println("Sunniest month: " + wr.getYear() + " " + wr.getMonthName() + " (" + wr.getSunHours()+" hours)");
+      System.out.println("Sunniest month: " + wr.getMonthName()+ " " + wr.getYear() + " (" + wr.getSunHours()+" hours)");
       System.out.printf("Mean max temp in August: %.2f deg C\n", ws.meanMaxTemp(8));
     }
 

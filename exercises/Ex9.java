@@ -1,20 +1,62 @@
-// Use Scanner in java.util package
-import java.util.Scanner;
-public class Ex6
+public class Ex9
 {
-    public static void main(String[] args)
+  public static void main(String[] args)
+  {
+    Rectangle rectangle1 = new Rectangle(4, 40);
+    System.out.println("Rectangle 1\n" + rectangle1.toString() + "\n");
+
+    Rectangle rectangle2 = new Rectangle(-1, 6);
+    System.out.println("Rectangle 2\n" + rectangle2.toString());
+  }
+}
+
+  class Rectangle
+  {
+    double width;
+    double height;
+
+    Rectangle()
     {
-        // Create Scanner object
-        Scanner input = new Scanner(System.in);
+      width = 1;
+      height = 1;
+    }
 
-        System.out.println("Celcius	Fahrenheit");
+    Rectangle(double w, double h)
+    {
+      width = w;
+      if (w <= 0)
+      {
+        throw new IllegalArgumentException("Width must be > 0");
+      }
+      height = h;
+      if (h <= 0)
+      {
+        throw new IllegalArgumentException("Height must be > 0");
+      }
+    }
 
-        // Celcius to Fahrenheit conversion
-        for (int celcius = 0; celcius <= 100; celcius +=2)
-            {
-            double fahrenheit= (1.8*celcius)+32;
-            System.out.println(celcius + "	");
-            System.out.printf(fahrenheit%.2f);
-            }
+    double getWidth()
+    {
+      return width;
+    }
+
+    double getHeight()
+    {
+      return height;
+    }
+
+    double getArea()
+    {
+      return width * height;
+    }
+
+    double getPerimeter()
+    {
+      return (2*width) + (2*height);
+    }
+
+    public String toString()
+    {
+      return String.format("Width:     %.2f\nHeight:    %.2f\nArea:      %.2f\nPerimeter: %.2f", width, height, getArea(), getPerimeter());
     }
 }

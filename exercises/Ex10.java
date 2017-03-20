@@ -1,20 +1,39 @@
-// Use Scanner in java.util package
+import java.io.IOException;
+import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
-public class Ex6
+
+public class Ex10
 {
-    public static void main(String[] args)
+  public static void main(String[] args) throws IOException
+  {
+    FileReader reader = new FileReader("integers.txt");
+
+    int[] values = new int[11];
+    int i = 0;
+
+    System.out.println("Array: " + Arrays.toString(values));
+
+    try
     {
-        // Create Scanner object
-        Scanner input = new Scanner(System.in);
+      Scanner input = new Scanner(reader);
 
-        System.out.println("Celcius	Fahrenheit");
-
-        // Celcius to Fahrenheit conversion
-        for (int celcius = 0; celcius <= 100; celcius +=2)
-            {
-            double fahrenheit= (1.8*celcius)+32;
-            System.out.println(celcius + "	");
-            System.out.printf(fahrenheit%.2f);
-            }
+      while(input.hasNextInt())
+      {
+        values[i] = input.nextInt();
+        i++;
+      }
+      input.close();
     }
+
+    catch(Exception error)
+    {
+      error.printStackTrace();
+    }
+
+    System.out.println("Textfile values: " + Arrays.toString(values));
+
+    Arrays.sort(values);
+    System.out.println("Sorted values: " + Arrays.toString(values));
+  }
 }
