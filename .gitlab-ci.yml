@@ -1,11 +1,11 @@
-image: java:jdk
+image: ingensi/oracle-jdk
 
 basic:
   script:
-    - cd cwk1/test
+    - cd cwk2/test
     - bash basictests
 
 full:
   script:
-    - cd cwk1/test
+    - cd cwk2/test
     - bash fulltests
