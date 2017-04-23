@@ -18,18 +18,18 @@ public class Ex11
     input.close();
   }
 
-  public double getNumbers();
+  double getNumbers();
   {
     return numbers;
   }
 
-  public double mean()
+  double mean()
   {
     double mean = 0;
 
     for (int count = 0; count < list.size(); count++)
       {
-      mean += list.get(count).getNumbers();
+        mean += list.get(count).getNumbers();
       }
     double finalMean = mean/list.size;
     return finalMean;
