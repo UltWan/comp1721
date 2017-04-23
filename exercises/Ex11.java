@@ -1,17 +1,19 @@
-import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
 
 public class Ex11
 {
   private double numbers;
-  private List<data> d = new ArrayList<>();
 
   public static void main (String[] args) throws FileNotFoundException
   {
+    ArrayList<String> list = new ArrayList<>();
+
     Scanner input = new Scanner(new File(args[0]));
 
     while (input.hasNextLine())
     {
-      d.add(new data(input.nextLine()));
+      list.add(new ArrayList(input.nextLine()));
     }
     input.close();
   }
@@ -25,11 +27,11 @@ public class Ex11
   {
     double mean = 0;
 
-    for (int count = 0; count < d.size(); count++)
+    for (int count = 0; count < list.size(); count++)
       {
-      mean += d.get(count).getNumbers();
+      mean += list.get(count).getNumbers();
       }
-    double finalMean = mean/d.size;
+    double finalMean = mean/list.size;
     return finalMean;
   }
 }

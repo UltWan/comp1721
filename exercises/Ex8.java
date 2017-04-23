@@ -67,13 +67,13 @@ public class Ex8
     boolean withdraw(int amount)
     {
       if (amount > 0 && amount <= balance)
-    {
-      balance = balance - amount;
-      return true;
+      {
+        balance = balance - amount;
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
-    else
-    {
-      return false;
-    }
-    }
-}
+  }
