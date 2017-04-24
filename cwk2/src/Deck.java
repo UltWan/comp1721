@@ -1,11 +1,27 @@
+import java.util.*;
+
+
 public class Deck
 {
   public Deck()
   {
-    //CardCollection();
+    deck = new LinkedList<Card>();
+
+    for (int i = 2; i < 15; i++)
+    {
+      deck.add(new Card("" + i, "spades"));
+      deck.add(new Card("" + i, "diamonds"));
+      deck.add(new Card("" + i, "clubs"));
+      deck.add(new Card("" + i, "hearts"));
+    }
   }
 
-  /*Card.Suit.values(size);
+  /*public Deck()
+  {
+    cards.add(new CardCollection(52));
+  }
+
+  Card.Suit.values(size);
 
   Card.Rank.values(size);
 
