@@ -1,11 +1,22 @@
 import java.util.*;
 
+/**
+ * A class to represent a standard deck of 52 cards (no Jokers).
+ *
+ * <p>Provided for use in COMP1721 Coursework 2.</p>
+ *
+ * @author Ryan Wan
+ */
 
 public class Deck extends CardCollection
 {
+
+  /**
+   * Creates a full sorted deck.
+   */
   public Deck()
   {
-    super();
+    super ();
 
     for (Card.Suit suit: Card.Suit.values())
     {
@@ -17,6 +28,9 @@ public class Deck extends CardCollection
     }
   }
 
+  /**
+   * Removes and returns one card from the deck as long as the deck is not empty.
+   */
   public Card deal()
   {
     if (cards.isEmpty())
@@ -29,6 +43,9 @@ public class Deck extends CardCollection
     }
   }
 
+  /**
+   * Randomly shuffles deck.
+   */
   public void shuffle()
   {
     Collections.shuffle(cards);
