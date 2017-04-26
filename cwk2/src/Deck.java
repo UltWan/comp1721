@@ -16,7 +16,7 @@ public class Deck extends CardCollection
    */
   public Deck()
   {
-    super ();
+    super();
 
     for (Card.Suit suit: Card.Suit.values())
     {
@@ -29,7 +29,7 @@ public class Deck extends CardCollection
   }
 
   /**
-   * Removes and returns one card from the deck as long as the deck is not empty.
+   * @returns Removes one card from the deck as long as the deck is not empty.
    */
   public Card deal()
   {

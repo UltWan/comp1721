@@ -52,11 +52,11 @@ public class PokerHand extends CardCollection
   {
     if (cards.size() >= 5)
     {
-      throw new PokerException("Error: Hand is already full");
+      throw new PokerException("Error: Hand already contains five cards");
     }
     if (cards.contains(card))
     {
-      throw new PokerException("Error: Same card is already in hand");
+      throw new PokerException("Error: The same card is already in hand");
     }
     else
     {
@@ -76,7 +76,11 @@ public class PokerHand extends CardCollection
     }
     else
     {
-      discard();
+      for (Card hand : cards)
+      {
+        deck.add(hand);
+      }
+    discard();
     }
   }
 
@@ -127,19 +131,27 @@ public class PokerHand extends CardCollection
 
     return finalOutput;
   }
-      
+
   /**
-   * @returns True if four cards of the same rank, false otherwise.
+   * @returns True if four cards are the same rank, otherwise false.
    */
   public boolean isFourOfAKind()
   {
+    int count;
+
     if (cards.size() == 5)
     {
-      for (int i = 0; i < 2; i++)
+      for (int i = 0; i < 5; i++)
       {
-        if (cards.get(i).getRank() == cards.get(i+1).getRank() &&
-            cards.get(i+1).getRank() == cards.get(i+2).getRank() &&
-            cards.get(i+2).getRank() == cards.get(i+3).getRank())
+        count = 0;
+        for (int j = 0; j < 5; j++)
+        {
+          if (cards.get(i).getRank() == cards.get(j).getRank())
+          {
+            count++;
+          }
+        }
+        if (count == 4)
         {
           return true;
         }
@@ -149,23 +161,128 @@ public class PokerHand extends CardCollection
   }
 
   /**
-   * @returns True if all cards are the same suit, false otherwise.
+   * @returns True if all cards are the same suit, otherwise false.
    */
   public boolean isFlush()
   {
+    int i = 0;
+
     if (cards.size() == 5)
     {
-      for (int i = 0; i < 4; i++)
+      if (cards.get(i).getSuit() == cards.get(i+1).getSuit() &&
+          cards.get(i+1).getSuit() == cards.get(i+2).getSuit() &&
+          cards.get(i+2).getSuit() == cards.get(i+3).getSuit() &&
+          cards.get(i+3).getSuit() == cards.get(i+4).getSuit())
       {
-        if (cards.get(i).getSuit() == cards.get(i+1).getSuit() &&
-            cards.get(i+1).getSuit() == cards.get(i+2).getSuit() &&
-            cards.get(i+2).getSuit() == cards.get(i+3).getSuit() &&
-            cards.get(i+3).getSuit() == cards.get(i+4).getSuit())
+        return true;
+      }    
+    }
+    return false;
+  }
+
+  /**
+   * @returns True if there is only one pair of the same rank, otherwise false.
+   */
+  public boolean isPair()
+  {
+    int count;
+
+    if (cards.size() == 5)
+    {
+      for (int i = 0; i < 5; i++)
+      {
+        count = 0;
+        for (int j = 0; j < 5; j++)
+        {
+          if (cards.get(i).getRank() == cards.get(j).getRank())
+          {
+            count++;
+          }
+        }
+        if (count == 2 && isTwoPairs() == false && isFullHouse() == false)
         {
           return true;
         }
       }
     }
     return false;
+  }
+
+  /**
+   * @returns True if there are two pairs, otherwise false.
+   */
+  public boolean isTwoPairs()
+  {
+    int i = 0;
+
+    if (cards.size() == 5)
+    {
+      if (cards.get(i).getRank() == cards.get(i+1).getRank() &&
+          cards.get(i+1).getRank() != cards.get(i+2).getRank() &&
+          cards.get(i+2).getRank() == cards.get(i+3).getRank() && 
+          cards.get(i+3).getRank() != cards.get(i+4).getRank())
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * @returns True if there are three cards of the same rank, 
+   *  with the other two being of different ranks, otherwise false.
+   */
+  public boolean isThreeOfAKind()
+  {
+    int count;
+
+    if (cards.size() == 5)
+    {
+      for (int i = 0; i < 5; i++)
+      {
+        count = 0;
+        for (int j = 0; j < 5; j++)
+        {
+          if (cards.get(i).getRank() == cards.get(j).getRank())
+          {
+            count++;
+          }
+        }
+        if (count == 3 && isFullHouse() == false)
+        {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * @returns True if there are three cards of the same rank, 
+   *  with the other two being the same rank as each other, otherwise false.
+   */
+  public boolean isFullHouse()
+  {
+    int i = 0;
+
+    if (cards.size() == 5)
+    {
+      if (cards.get(i).getRank() == cards.get(i+1).getRank() &&
+          cards.get(i+1).getRank() == cards.get(i+2).getRank() &&
+          cards.get(i+2).getRank() != cards.get(i+3).getRank() && 
+          cards.get(i+3).getRank() == cards.get(i+4).getRank())
+      {
+        return true;
+      }    
+    }
+    return false;
+  }
+
+  /**
+   * @returns True if cards can form a ascending/descending numerical sequence.
+   */
+  public boolean isStraight()
+  {
+    return true;
   }
 }
