@@ -1,105 +1,111 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * A class to show the probability of getting a certain type of hand by simulating
+ * five card hands being dealt.
+ *
+ * <p>Provided for use in COMP1721 Coursework 2.</p>
+ *
+ * @author Ryan Wan
+ */
+
 public class PokerStats
 {
   public static void main(String[] args)
   {
-    int countDecks = Integer.parseInt(args[0]);
-    Deck[] PokerStatsDeck;
-    PokerStatsDeck = new Deck[countDecks];
+    // asks for the number of deck to be created
+    int decksCreated = Integer.parseInt(args[0]);
+    Deck[] pokerStats;
+    pokerStats = new Deck[decksCreated];
 
-    PokerHand[][] EveryHand;
-    EveryHand = new PokerHand[countDecks][10];
-    PokerHand Hand = new PokerHand();
+    PokerHand[][] allHands;
+    
+    // only can be a maximum of 10 hands dealt from each deck
+    allHands = new PokerHand[decksCreated][10];
+    PokerHand hand = new PokerHand();
 
-    double numberFlush = 0.0;
-    double numberFour = 0.0;
-    double numberPair = 0.0;
-    double numberTwoPairs = 0.0;
-    double numberThree = 0.0;
-    double numberFullHouse = 0.0;
-    double numberStraight = 0.0;
+    double countFlush = 0;
+    double countFour = 0;
+    double countPair = 0;
+    double countTwoPairs = 0;
+    double countThree = 0;
+    double countFullHouse = 0;
+    double countStraight = 0;
 
-    for (int i = 0; i < countDecks; i++)
+    // loop for number of decks created
+    for (int i = 0; i < decksCreated; i++)
     {
-      PokerStatsDeck[i] = new Deck();
-      PokerStatsDeck[i].shuffle();
+      pokerStats[i] = new Deck();
+      pokerStats[i].shuffle();
       
+      // loop for number of hands dealt
       for (int j = 0; j < 10; j++)
       {
+        // loop for each card in these hands
         for (int k = 0; k < 5; k++)
         {
-          Hand.add(PokerStatsDeck[i].deal());
-        }
-        EveryHand[i][j] = Hand;
-        System.out.println(EveryHand[i][j].toFancyString());
-
-        if (Hand.isFlush())
-        {
-          numberFlush++;
+          hand.add(pokerStats[i].deal());
         }
 
-        if (Hand.isFourOfAKind())
+        allHands[i][j] = hand;
+        System.out.println(allHands[i][j].toFancyString());
+
+        // counts each type of hand
+        if (hand.isFlush())
         {
-          numberFour++;
+          countFlush++;
         }
 
-        if (Hand.isPair())
+        if (hand.isFourOfAKind())
         {
-          numberPair++;
+          countFour++;
         }
 
-        if (Hand.isTwoPairs())
+        if (hand.isPair())
         {
-          numberTwoPairs++;
+          countPair++;
         }
 
-        if (Hand.isThreeOfAKind())
+        if (hand.isTwoPairs())
         {
-          numberThree++;
+          countTwoPairs++;
         }
 
-        if (Hand.isFullHouse())
+        if (hand.isThreeOfAKind())
         {
-          numberFlush++;
+          countThree++;
         }
 
-        if (Hand.isStraight())
+        if (hand.isFullHouse())
         {
-          numberStraight++;
+          countFullHouse++;
         }
 
-        while (!Hand.isEmpty())
+        if (hand.isStraight())
         {
-          Hand.discard();
+          countStraight++;
+        }
+
+        while (!hand.isEmpty())
+        {
+          hand.discard();
         }
       }
       System.out.println();
     }
 
-    int numberDeals = countDecks * 10;
-    System.out.println(numberDeals + " Deals");
-    System.out.printf("P(Flush)           = ");
-    System.out.printf("%.3f", (numberFlush / numberDeals * 100));
-    System.out.println("%");
-    System.out.printf("P(Four of a Kind)  = ");
-    System.out.printf("%.3f", (numberFour / numberDeals * 100));
-    System.out.println("%");
-    System.out.printf("P(Pair)            = ");
-    System.out.printf("%.3f", (numberPair / numberDeals * 100));
-    System.out.println("%");
-    System.out.printf("P(Two Pairs)       = ");
-    System.out.printf("%.3f", (numberTwoPairs / numberDeals * 100));
-    System.out.println("%");
-    System.out.printf("P(Three of a Kind) = ");
-    System.out.printf("%.3f", (numberThree / numberDeals * 100));
-    System.out.println("%");
-    System.out.printf("P(Full House)      = ");
-    System.out.printf("%.3f", (numberFullHouse / numberDeals * 100));
-    System.out.println("%");
-    System.out.printf("P(Straight)        = ");
-    System.out.printf("%.3f", (numberStraight / numberDeals * 100));
-    System.out.println("%");
+    // can only be ten hands dealt for one deck
+    int handsDealt = decksCreated * 10;
+
+    // prints out probabilities
+    System.out.println(handsDealt + " Deals");
+    System.out.printf("%s %.3f %s %n","P(Flush)           =", (countFlush / handsDealt * 100), "%");
+    System.out.printf("%s %.3f %s %n","P(Four of a Kind)  =", (countFour / handsDealt * 100), "%");
+    System.out.printf("%s %.3f %s %n","P(Pair)            =", (countPair / handsDealt * 100), "%");
+    System.out.printf("%s %.3f %s %n","P(Two Pairs)       =", (countTwoPairs / handsDealt * 100), "%");
+    System.out.printf("%s %.3f %s %n","P(Three of a Kind) =", (countThree / handsDealt * 100), "%");
+    System.out.printf("%s %.3f %s %n","P(Full House)      =", (countFullHouse / handsDealt * 100), "%");
+    System.out.printf("%s %.3f %s %n","P(Straight)        =", (countStraight / handsDealt * 100), "%");
   }
 }
