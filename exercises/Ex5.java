@@ -8,7 +8,7 @@ public class Ex5
 
     System.out.println("Celcius	  Fahrenheit");
 
-    // Celcius to Fahrenheit conversion
+    // Celcius to Fahrenheit conversion table
     for (int celcius = 0; celcius <= 100; celcius +=2)
     {
       double fahrenheit = (1.8*celcius)+32;

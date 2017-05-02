@@ -7,13 +7,13 @@ public class Ex11
 
   public static void main (String[] args) throws FileNotFoundException
   {
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<Double> list = new ArrayList<Double>();
 
     Scanner input = new Scanner(new File(args[0]));
 
-    while (input.hasNextLine())
+    while (input.hasNext())
     {
-      list.add(new ArrayList(input.nextLine()));
+      list.add(new ArrayList(input.next()));
     }
     input.close();
   }
@@ -27,11 +27,11 @@ public class Ex11
   {
     double mean = 0;
 
-    for (int count = 0; count < list.size(); count++)
+    for (double count = 0; count < list.size(); count++)
       {
         mean += list.get(count).getNumbers();
       }
-    double finalMean = mean/list.size;
+    double finalMean = mean/list.size();
     return finalMean;
   }
 }

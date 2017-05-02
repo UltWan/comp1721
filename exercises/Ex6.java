@@ -16,7 +16,7 @@ public class Ex6
     }
 
     int charCount = inputString.length();
-    System.out.println("There are " + charCount + " characters in the string");
+    System.out.println("\nThere are " + charCount + " characters in the string");
     int i;
     int countA = 0;
     int countE = 0;

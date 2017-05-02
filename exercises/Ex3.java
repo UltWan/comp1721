@@ -1,5 +1,6 @@
 // Use Scanner in java.util package
 import java.util.Scanner;
+
 public class Ex3
 {
   public static void main(String[] args)
@@ -8,7 +9,6 @@ public class Ex3
 
     // Prompt user to enter points
     System.out.println("Enter first x coordinate: ");
-
     double x1 = input.nextDouble();
     System.out.println("Enter first y coordinate: ");
     double y1 = input.nextDouble();
