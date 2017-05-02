@@ -4,9 +4,11 @@ public class Date
   private Month month;
   private int year;
 
-  class Date(int d, Month m, int y)
+  Date(int day, Month month, int year)
   {
-    this(d, m, y);
+    this.day = day;
+    this.month = month;
+    this.year = year;
   }
 
   int getDay()
@@ -25,7 +27,7 @@ public class Date
   }
 
   @Override
-  public String toString
+  public String toString()
   {
     return "Date: " + getDay() + " " + getMonth() + " " + getYear();
   }

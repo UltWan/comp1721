@@ -14,7 +14,7 @@ public class Ex8
     bankAccount1.withdraw(2500);
     bankAccount1.deposit(3000);
 
-    System.out.println("The current balance of the account is: " + bankAccount1.getBalance());
+    System.out.println("\nThe current balance of the account is: £" + bankAccount1.getBalance());
   }
 }
 
