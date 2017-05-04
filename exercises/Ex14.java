@@ -2,8 +2,8 @@ public class Ex14
 {
   public static void main(String[] args)
   {
-    Date date1 = new Date(01, 05, 2017);
-    System.out.println("\nThe date is: " + date1.getDay() + date1.getMonth() + date1.getYear());
-    System.out.printf("As a string: %s%n", date1);
+    Date date1 = new Date(13, Month.MARCH, 2017);
+    System.out.println("\nThe date is: " + date1.getDay() + " " + date1.getMonth() + " " + date1.getYear());
+    System.out.printf("As a string - %s%n", date1);
   }
 }
