@@ -3,35 +3,27 @@ import java.io.*;
 
 public class Ex11
 {
-  private double numbers;
-
-  public static void main (String[] args) throws FileNotFoundException
+  public static void main(String[] args) throws FileNotFoundException
   {
-    ArrayList<Double> list = new ArrayList<Double>();
+    if (args.length == 0)
+    {
+      System.out.println("Error: No file specified");
+      System.exit(1);
+    }
+
+    double total = 0;
+    ArrayList<Double> dataList = new ArrayList<>();
 
     Scanner input = new Scanner(new File(args[0]));
 
     while (input.hasNext())
     {
-      list.add(new ArrayList(input.next()));
+      double value = input.nextDouble();
+      total = total + value;
+      dataList.add(value);
     }
-    input.close();
-  }
-
-  double getNumbers();
-  {
-    return numbers;
-  }
-
-  double mean()
-  {
-    double mean = 0;
-
-    for (double count = 0; count < list.size(); count++)
-      {
-        mean += list.get(count).getNumbers();
-      }
-    double finalMean = mean/list.size();
-    return finalMean;
+    System.out.printf("The number of values = %d%n", dataList.size());
+    System.out.printf("The sum of all values = %.3f%n", total);
+    System.out.printf("The mean = %.3f%n", total/dataList.size());
   }
 }
