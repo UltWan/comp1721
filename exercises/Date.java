@@ -1,4 +1,4 @@
-public class Date
+public class Date implements Comparable<Date>
 {
   private int day;
   private Month month;
@@ -29,6 +29,20 @@ public class Date
   @Override
   public String toString()
   {
-    return "Date: " + getDay() + " " + getMonth() + " " + getYear();
+    return getDay() + " " + getMonth() + " " + getYear();
+  }
+
+  public int compareTo(Date other)
+  {
+    int comp = Integer.compare(year, other.year);
+    if (comp == 0)
+    {
+      comp = Integer.compare(month.ordinal(), other.month.ordinal());
+      if (comp == 0)
+      {
+        comp = Integer.compare(day, other.day);
+      }
+    }
+    return comp;
   }
 }
